@@ -18,14 +18,19 @@ for line in file.readlines():           #Using a for loop to read the lines of t
 	if country_name in choice_countries:     #If country(line_data[1]) is equal to Turkey	
 		country_exists = check_country(country_name)
 
+		#print(country_exists)
+
 		if country_exists:	
 			for data in list(zip(line_data, heading[0].split(",")))[4:]:
-				#print(data)	
-				write_deaths(country_exists[0]['id'], date_format(data[1]), data[0])
-			else:	
-				longitude = line_data[2]	
-				latitude = 	line_data[3]
-				write_countries(country_name, longitude, latitude)
 
-
+ 				print(date_format(data[1]), data[1])	
+				#write_deaths(country_exists[0]['id'], data[0], date_format(data[1]))
+				
 		
+		#else:	
+			#longitude = line_data[2]	
+			#latitude = 	line_data[3]
+			#write_countries(country_name, longitude, latitude)
+
+
+

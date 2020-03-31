@@ -34,11 +34,11 @@ def write_countries(name, longitude, latitude):
 
 
 #Enters the deaths in selected countries into the database
-def write_deaths(country_id, deaths, date_of_deaths):
+def write_deaths(country_id, deaths, date_of_death):
 
     with connection.cursor() as cursor:
-        enter_death = f"insert into deaths (country_id, deaths, date_of_deaths) values ('{country_id}', '{deaths}', '{date_of_deaths}')"
-        print(enter_death)
+        enter_death = f"insert into deaths (country_id, deaths, date_of_death) values ('{country_id}', '{deaths}', '{date_of_death}')"
+
         cursor.execute(enter_death)
 
         connection.commit()
@@ -58,12 +58,13 @@ def check_country(name):
 
 #This function formats the date in the csv file into sql format of year, month and day
 def date_format(date):
-    month, day, year = date.split("/")      #spliting the dates in the csv file into a list eg 1/20/20 now becomes [1, 20, 20]
-    
-    #using a - to separate the list([1, 20, 20]), flipping the list while concatenating +20 to the year(20) to have ([2020-1-20])
-    changed_date = "-".join([year.replace('\n', '')+'20', month, day])  
-    
-    return changed_date
+	
+	month, day, year = date.split("/")      #spliting the dates in the csv file into a list eg 1/20/20 now becomes [1, 20, 20]
+	
+	#using a - to separate the list([1, 20, 20]), flipping the list while concatenating +20 to the year(20) to have ([2020-1-20])
+	changed_date = "-".join([year.replace('\n','')+'20', month, day])
+	
+	return changed_date
 
 
 #write_countries("Turkey", 38.9637,35.2433)
