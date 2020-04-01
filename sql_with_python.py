@@ -34,13 +34,12 @@ def write_countries(name, longitude, latitude):
 
 
 #Enters the deaths in selected countries into the database
-def write_deaths(country_id, deaths, date_of_death):
+def write_cases(country_id, deaths, date_of_death, recoveries, confirmed_cases):
 
     with connection.cursor() as cursor:
-        enter_death = f"insert into deaths (country_id, deaths, date_of_death) values ('{country_id}', '{deaths}', '{date_of_death}')"
-
+        enter_death = f"insert into deaths (country_id, deaths, date_of_death, recoveries, confirmed_cases) values ('{country_id}', '{deaths}', '{date_of_death}', '{recoveries}', '{confirmed_cases}')"
+		
         cursor.execute(enter_death)
-
         connection.commit()
 
 
@@ -54,6 +53,14 @@ def check_country(name):
         response = cursor.fetchall()
         return response
         
+
+#Adds a column to the death table if not exists doesn't break the code if the table already exists
+def add_column():
+	with connection.cursor() as cursor:
+		new_column = f"alter table deaths add if not exists (recoveries int(100), confirmed_cases int(100))"
+		cursor.execute(new_column)
+		connection.commit()
+
 
 
 #This function formats the date in the csv file into sql format of year, month and day
@@ -69,5 +76,6 @@ def date_format(date):
 
 #write_countries("Turkey", 38.9637,35.2433)
 create_tables()
+#add_column()
 
 
