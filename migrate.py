@@ -1,4 +1,4 @@
-import sql_with_python
+from sql_with_python import *
 
 file = open("time_series_covid19_deaths_global.csv")
 
