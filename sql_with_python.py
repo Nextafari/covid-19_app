@@ -1,12 +1,12 @@
 import pymysql.cursors
 
 #This connects us to the database
-connection = pymysql.connect (host = "localhost",
-                                    user = "root",
-                                    password = "",
-                                    db = "corona_virus",
-                                    charset = "utf8mb4",
-                                    cursorclass = pymysql.cursors.DictCursor) 
+connection = pymysql.connect (host="localhost",
+                                    user="root",
+                                    password="",
+                                    db="corona_virus",
+                                    charset="utf8mb4",
+                                    cursorclass=pymysql.cursors.DictCursor) 
 
 
 def create_tables():
